@@ -6,14 +6,13 @@ namespace AlgorithmsLab1
 {
     public class RSA
     {
-        private static char[] characters = new char[] { '#', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и',
-                                                'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с',
-                                                'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ',
-                                                'э', 'ю', 'я', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
-                                                'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С',
-                                                'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ',
-                                                'Э', 'Ю', 'Я', ' ', '1', '2', '3', '4', '5', '6', '7',
-                                                '8', '9', '0', ',', '-', '(', ')', '=', '+', '!', '?', '.' };
+        private static string engAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static string ruAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        private static string symbols = " .,!@#$%^&*(){}:;<>?\\|/";
+        private static string numbers = "1234567890";
+
+        public static readonly char[] Characters = (engAlphabet + engAlphabet.ToLower()
+        + ruAlphabet + ruAlphabet.ToLower() + symbols + numbers + Environment.NewLine).ToCharArray();
 
         public static bool IsTheNumberSimple(long n)
         {
@@ -38,7 +37,7 @@ namespace AlgorithmsLab1
 
             for (int i = 0; i < text.Length; i++)
             {
-                int index = Array.IndexOf(characters, text[i]);
+                int index = Array.IndexOf(Characters, text[i]);
 
                 E = new BigInteger(index);
                 E = BigInteger.Pow(E, (int)e);
@@ -70,7 +69,7 @@ namespace AlgorithmsLab1
 
                 int index = Convert.ToInt32(E.ToString());
 
-                result += characters[index].ToString();
+                result += Characters[index].ToString();
             }
 
             return result;

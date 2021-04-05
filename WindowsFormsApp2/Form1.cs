@@ -61,7 +61,7 @@ namespace AlgorithmsLab1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if ((textBox_e.Text.Length > 0) && (textBox_n.Text.Length > 0))
+            if ((textBox_d.Text.Length > 0) && (textBox_n.Text.Length > 0))
             {
                 long d = Convert.ToInt64(textBox_d.Text);
                 long n = Convert.ToInt64(textBox_n.Text);

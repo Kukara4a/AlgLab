@@ -110,7 +110,7 @@ namespace AlgorithmsLab1
                             }
                         }
 
-                        if (result[0] == 0)
+                        if (result[0] == 0 || i == 0)
                         {
                             result.Insert(0, 1);
                             lengthDif++;
@@ -221,6 +221,7 @@ namespace AlgorithmsLab1
             if (divisor.Number[0] == 0)
                 throw new Exception("На ноль делить нельзя");
 
+            var divisorModule = new BigInt(1, divisor.Number);
             var i = 0;
             var resultNumb = new List<byte>();
             var incompleteDivisible = new BigInt(1, new List<byte>(0));
@@ -229,7 +230,7 @@ namespace AlgorithmsLab1
             {
                 for (; i < divisible.Number.Count; i++)
                 {
-                    if (incompleteDivisible >= divisor)
+                    if (incompleteDivisible >= divisorModule)
                         break;
 
                     incompleteDivisible.Number.Add(divisible.Number[i]);
@@ -244,15 +245,18 @@ namespace AlgorithmsLab1
 
                 for (int j = 0; j < 10; j++)
                 {
-                    if (incompleteDivisible < divisor)
+                    if (incompleteDivisible < divisorModule)
                     {
                         resultNumb.Add((byte)j);
                         break;
                     }
 
-                    incompleteDivisible -= divisor;
+                    incompleteDivisible -= divisorModule;
                 }
             }
+
+            if (resultNumb.Count == 0)
+                resultNumb.Add(0);
 
             return new BigInt((sbyte)(divisible.Sign != divisor.Sign ? -1 : 1), resultNumb);
         }
